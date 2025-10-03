@@ -19,6 +19,7 @@
             <li><a href="#features">Features</a></li>
             <li><a href="#project-structure">Project Structure</a></li>
             <li><a href="#getting-started">Getting Started</a></li>
+            <li><a href="#development-build">Development Build</a></li>
             <li><a href="#credentials">Credentials</a></li>
             <li><a href="#screenshots">Screenshots</a></li>
             <li><a href="#roadmap">Roadmap</a></li>
@@ -59,6 +60,8 @@ django-react-starter-kit/
 ├── frontend/ # React app with Router
 ├── docker/ # Dockerfiles and configs
 ├── docker-compose.yml
+└── .dockerignore
+└── .gitignore
 └── README.md
 ```
 
@@ -81,6 +84,16 @@ django-react-starter-kit/
 3. Open apps:
     - Backend API → http://localhost:8000/api/
     - Frontend → http://localhost:3000/
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+## Development Build
+
+1. Start the frontend:
+    ```bash
+    npm run --prefix frontend/ dev
+    ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
