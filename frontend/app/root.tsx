@@ -9,6 +9,7 @@ import {
 
 import type { Route } from "./+types/root";
 import "./App.css";
+import BackendApiProvider from "./Contexts/useBackendApi";
 
 export const links: Route.LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -42,7 +43,11 @@ export function Layout({ children }: { children: React.ReactNode }) {
 }
 
 export default function App() {
-  return <Outlet />;
+  return (
+    <BackendApiProvider>
+      <Outlet />
+    </BackendApiProvider>
+  );
 }
 
 export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
