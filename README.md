@@ -91,7 +91,7 @@ django-react-starter-kit/
 ## Development Build
 
 1. Start the backend:
-    ```
+    ```bash
     python backend/manage.py runserver 0.0.0.0:8000
     ```
 
@@ -119,7 +119,8 @@ django-react-starter-kit/
 ## Roadmap
 
 - [x] Initial repo configuration, 2025.10.04
-- [ ] Connect frontend to backend
+- [x] Connect frontend to backend, 2025.10.04
+- [ ] Backend auth functionality
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
