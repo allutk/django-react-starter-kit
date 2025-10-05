@@ -9,13 +9,20 @@
     "typecheck": "react-router typegen && tsc"
   },
   "dependencies": {
+    "@hookform/resolvers": "^5.2.2",
     "@react-router/node": "^7.9.2",
     "@react-router/serve": "^7.9.2",
     "axios": "^1.12.2",
+    "http-status-codes": "^2.3.0",
     "isbot": "^5.1.31",
+    "jwt-decode": "^4.0.0",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
-    "react-router": "^7.9.2"
+    "react-hook-form": "^7.64.0",
+    "react-hot-toast": "^2.6.0",
+    "react-router": "^7.9.2",
+    "react-spinners": "^0.17.0",
+    "zod": "^4.1.11"
   },
   "devDependencies": {
     "@react-router/dev": "^7.9.2",

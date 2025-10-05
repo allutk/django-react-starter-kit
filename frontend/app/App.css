@@ -1,1 +1,10 @@
 @import "tailwindcss";
+
+@theme {
+  --color-accent: var(--color-purple-800);
+  --color-bold-accent: var(--color-purple-950);
+  --color-error: var(--color-red-600);
+  --color-bg-from: var(--color-indigo-100);
+  --color-bg-via: var(--color-purple-50);
+  --color-bg-to: var(--color-indigo-50);
+}

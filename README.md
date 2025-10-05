@@ -120,8 +120,9 @@ django-react-starter-kit/
 
 - [x] Initial repo configuration, 2025.10.04
 - [x] Connect frontend to backend, 2025.10.04
-- [x] Backend auth functionality
-- [ ] Frontend auth functionality
+- [x] Backend auth functionality, 2025.10.04
+- [x] Frontend auth functionality, 2025.10.05
+- [ ] Frontend user details update functionality
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 

@@ -1,7 +1,5 @@
-import { useState } from "react";
-
 import type { Route } from "./+types/Home";
-import { useBackendApi } from "~/Contexts/useBackendApi";
+import ProtectedRoute from "~/Restrictions/ProtectedRoute";
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -12,24 +10,9 @@ export function meta({}: Route.MetaArgs) {
 }
 
 export default function Home() {
-  const { callPing } = useBackendApi();
-
-  const [pingResponse, setPingResponse] = useState<string | null>(null);
-
-  const onCallPing = async () => {
-    const res = await callPing((error: any) => console.log(error));
-    if (res) setPingResponse(res);
-  };
-
   return (
-    <div className="p-4">
-      <button className="cursor-pointer" onClick={onCallPing}>
-        Ping
-      </button>
-
-      {pingResponse &&
-        <div>{pingResponse}</div>
-      }
-    </div>
+    <ProtectedRoute>
+      <div>Home</div>
+    </ProtectedRoute>
   );
 }

@@ -6,10 +6,12 @@ import {
   Scripts,
   ScrollRestoration,
 } from "react-router";
+import { Toaster } from "react-hot-toast";
 
 import type { Route } from "./+types/root";
+import AuthProvider from "./Contexts/useAuth";
+import Body from "./Components/Body";
 import "./App.css";
-import BackendApiProvider from "./Contexts/useBackendApi";
 
 export const links: Route.LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -20,7 +22,7 @@ export const links: Route.LinksFunction = () => [
   },
   {
     rel: "stylesheet",
-    href: "https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap",
+    href: "https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=lock,mail,visibility,visibility_off",
   },
 ];
 
@@ -44,9 +46,12 @@ export function Layout({ children }: { children: React.ReactNode }) {
 
 export default function App() {
   return (
-    <BackendApiProvider>
-      <Outlet />
-    </BackendApiProvider>
+    <AuthProvider>
+      <Body>
+        <Outlet />
+        <Toaster />
+      </Body>
+    </AuthProvider>
   );
 }
 
