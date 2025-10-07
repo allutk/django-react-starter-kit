@@ -1,5 +1,9 @@
 import type { Route } from "./+types/Home";
+import { useAuth } from "~/Contexts/useAuth";
 import ProtectedRoute from "~/Restrictions/ProtectedRoute";
+import BoxContainer from "~/Components/BoxContainer";
+import UserDetailsForm from "~/Components/UserDetailsForm";
+import PasswordChangeForm from "~/Components/PasswordChangeForm";
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -10,9 +14,17 @@ export function meta({}: Route.MetaArgs) {
 }
 
 export default function Home() {
+  const { userDetails } = useAuth();
+
   return (
     <ProtectedRoute>
-      <div>Home</div>
+      <BoxContainer extraClassName="md:max-w-xl divide-y divide-gray-200 ">
+        <p className="py-6 first:pt-0 text-center text-3xl text-accent font-semibold">
+          Welcome, {userDetails?.email}!
+        </p>
+        <UserDetailsForm extraClassName="py-6" />
+        <PasswordChangeForm extraClassName="py-6 last:pb-0" />
+      </BoxContainer>
     </ProtectedRoute>
   );
 }

@@ -113,6 +113,10 @@ django-react-starter-kit/
 
 ## Screenshots
 
+![Register page](https://github.com/allutk/django-react-starter-kit/raw/main/frontend/assets/Register.png "Register page")
+![Login page](https://github.com/allutk/django-react-starter-kit/raw/main/frontend/assets/Login.png "Login page")
+![Profile page](https://github.com/allutk/django-react-starter-kit/raw/main/frontend/assets/Profile.png "Profile page")
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
@@ -122,14 +126,7 @@ django-react-starter-kit/
 - [x] Connect frontend to backend, 2025.10.04
 - [x] Backend auth functionality, 2025.10.04
 - [x] Frontend auth functionality, 2025.10.05
-- [ ] Frontend user details update functionality
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-## ToDo list
-
-ToDo list is currently empty
+- [x] Frontend user details update functionality, 2025.10.07
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
