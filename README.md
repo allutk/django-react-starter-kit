@@ -64,6 +64,19 @@ The mandatory environment variables are:
 - **POSTGRES_PASSWORD** _(string)_ - PostgreSQL password
 - **POSTGRES_HOST** _(string)_ - PostgreSQL Docker host
 - **POSTGRES_PORT** _(number)_ - PostgreSQL port
+<br />
+
+Example `.env` file with all the variables:
+```bash
+HOST=localhost
+BACKEND_PORT=8000
+FRONTEND_PORT=3000
+POSTGRES_DB=default_database
+POSTGRES_USER=root_user
+POSTGRES_PASSWORD=password
+POSTGRES_HOST=db
+POSTGRES_PORT=5432
+```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -75,9 +88,9 @@ django-react-starter-kit/
 ├── frontend/ # React app with Router
 ├── docker/ # Dockerfiles and configs
 ├── docker-compose.yml
+├── .github/
 └── .dockerignore
 └── .gitignore
-└── .env
 └── README.md
 ```
 

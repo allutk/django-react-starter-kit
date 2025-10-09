@@ -1,3 +1,11 @@
-# from django.test import TestCase
+import pytest
+from django.urls import reverse
+from rest_framework import status
 
-# Create your tests here.
+
+@pytest.mark.django_db
+def test_healthcheck(client):
+    url = reverse("healthcheck")
+    response = client.get(url)
+    assert response.status_code == status.HTTP_200_OK
+    assert response.json() == {"status": "ok"}

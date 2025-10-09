@@ -8,6 +8,7 @@ from . import views
 
 
 auth_urlpatterns = [
+    path("health/", views.healthcheck, name="healthcheck"),
     path('user/', views.UserListCreateView.as_view(), name='user'),
     path('user/<str:id>/', views.UserUpdateView.as_view(), name='user-update'),
     path(
