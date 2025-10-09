@@ -2,8 +2,10 @@ import axios from "axios";
 
 import { ACCESS_TOKEN } from "~/Constants";
 
+const host = import.meta.env.VITE_HOST
+const backendPort = import.meta.env.VITE_BACKEND_PORT
 const backendApi = axios.create({
-  baseURL: import.meta.env.VITE_API_BASE_URL
+  baseURL: `http://${host}:${backendPort}/api`
 });
 
 backendApi.interceptors.request.use(

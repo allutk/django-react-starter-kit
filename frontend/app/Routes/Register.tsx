@@ -57,7 +57,7 @@ export default function Register() {
   const onSubmit: SubmitHandler<FormFields> = async (data) => {
     await registerUser(data.email, data.password, (error: any) => {
       setError("root", {
-        message: error.response.data.email
+        message: error.response?.data?.detail || error.message
       });
     });
   };

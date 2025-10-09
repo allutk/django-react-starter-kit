@@ -17,13 +17,13 @@
         <ol>
             <li><a href="#tech-stack">Tech Stack</a></li>
             <li><a href="#features">Features</a></li>
+            <li><a href="#project-structure">Environment Variables</a></li>
             <li><a href="#project-structure">Project Structure</a></li>
             <li><a href="#getting-started">Getting Started</a></li>
             <li><a href="#development-build">Development Build</a></li>
             <li><a href="#credentials">Credentials</a></li>
             <li><a href="#screenshots">Screenshots</a></li>
             <li><a href="#roadmap">Roadmap</a></li>
-            <li><a href="#todo-list">ToDo list</a></li>
         </ol>
 </details>
 
@@ -49,6 +49,21 @@
 - **Containerization:** Docker + Docker Compose
 - **CI/CD:** GitHub Actions (linting & tests)
 - **Extras:** Pre-configured ESLint, Black, and Prettier
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+## Environment Variables
+
+The mandatory environment variables are:
+- **HOST** _(string)_ - host FQDN
+- **BACKEND_PORT** _(number)_ - backend port
+- **FRONTEND_PORT** _(number)_ - frontend port
+- **POSTGRES_DB** _(string)_ - PostgreSQL DB name
+- **POSTGRES_USER** _(string)_ - PostgreSQL user
+- **POSTGRES_PASSWORD** _(string)_ - PostgreSQL password
+- **POSTGRES_HOST** _(string)_ - PostgreSQL Docker host
+- **POSTGRES_PORT** _(number)_ - PostgreSQL port
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -79,6 +94,12 @@ django-react-starter-kit/
 2. Start services with Docker:
     ```bash
     docker compose up --force-recreate --build -d
+    ```
+
+3. _*(Optional, first use only)*_ make migrations and migrate:
+    ```bash
+    docker compose exec backend python manage.py makemigrations
+    docker compose exec backend python manage.py migrate
     ```
 
 3. Open apps:
@@ -127,6 +148,7 @@ django-react-starter-kit/
 - [x] Backend auth functionality, 2025.10.04
 - [x] Frontend auth functionality, 2025.10.05
 - [x] Frontend user details update functionality, 2025.10.07
+- [x] Docker setup, 2025.10.09
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 

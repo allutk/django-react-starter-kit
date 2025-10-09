@@ -1,0 +1,50 @@
+x-db-env: &db-env
+  - POSTGRES_DB: ${POSTGRES_DB}
+  - POSTGRES_USER: ${POSTGRES_USER}
+  - POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+  - POSTGRES_HOST: ${POSTGRES_HOST}
+  - POSTGRES_PORT: ${POSTGRES_PORT}
+
+services:
+  db:
+    image: postgres:latest
+    restart: always
+    environment:
+      <<: *db-env
+    ports:
+      - ${POSTGRES_PORT}:${POSTGRES_PORT}
+    volumes:
+      - ./pgdata:/var/lib/postgresql/pgdata
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+
+  backend:
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: always
+    environment:
+      <<: *db-env
+      HOST: ${HOST}
+      FRONTEND_PORT: ${FRONTEND_PORT}
+    build:
+      context: .
+      dockerfile: docker/Dockerfile-backend
+    ports:
+      - ${BACKEND_PORT}:${BACKEND_PORT}
+
+  frontend:
+    depends_on:
+      - backend
+    restart: always
+    build:
+      context: .
+      dockerfile: docker/Dockerfile-frontend
+      args:
+        HOST: ${HOST}
+        BACKEND_PORT: ${BACKEND_PORT}
+    ports:
+      - ${FRONTEND_PORT}:${FRONTEND_PORT}

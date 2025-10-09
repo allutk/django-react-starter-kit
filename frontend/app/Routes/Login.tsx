@@ -42,7 +42,7 @@ export default function Login() {
   const onSubmit: SubmitHandler<FormFields> = async (data) => {
     await loginUser(data.email, data.password, (error: any) => {
       setError("root", {
-        message: error.response.data.detail
+        message: error.response?.data?.detail || error.message
       });
     });
   };
