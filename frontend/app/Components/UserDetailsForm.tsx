@@ -14,12 +14,12 @@ type UserDetailsFormProps = {
 
 const formSchema = z.object({
   firstName: z.string(),
-  lastName: z.string()
+  lastName: z.string(),
 });
 type FormFields = z.infer<typeof formSchema>;
 
 export default function UserDetailsForm({
-  extraClassName
+  extraClassName,
 }: UserDetailsFormProps) {
   const { userDetails, patchUserDetails } = useAuth();
   const {
@@ -28,27 +28,27 @@ export default function UserDetailsForm({
     watch,
     setError,
     setValue,
-    formState: { errors, isSubmitting }
+    formState: { errors, isSubmitting },
   } = useForm<FormFields>({
-    resolver: zodResolver(formSchema)
+    resolver: zodResolver(formSchema),
   });
 
   const firstName = watch("firstName");
   const lastName = watch("lastName");
-  const areDetailsUpdated = (
-    (firstName ? firstName : "")
-      !== (userDetails?.firstName ? userDetails.firstName : "") ||
-    (lastName ? lastName : "")
-      !== (userDetails?.lastName ? userDetails.lastName : "")
-  );
+  const areDetailsUpdated =
+    (firstName ? firstName : "") !==
+      (userDetails?.firstName ? userDetails.firstName : "") ||
+    (lastName ? lastName : "") !==
+      (userDetails?.lastName ? userDetails.lastName : "");
 
   const onSubmit: SubmitHandler<FormFields> = async (data) => {
     await patchUserDetails({
-      onFailCallback: (error: any) => setError("root", {
-        message: error.response.data.detail
-      }),
+      onFailCallback: (error: any) =>
+        setError("root", {
+          message: error.response.data.detail,
+        }),
       firstName: data.firstName ? data.firstName : undefined,
-      lastName: data.lastName ? data.lastName : undefined
+      lastName: data.lastName ? data.lastName : undefined,
     });
   };
 
@@ -68,9 +68,7 @@ export default function UserDetailsForm({
       <Loader isLoading={isSubmitting} />
 
       {errors.root && (
-        <div className="text-center mb-3 text-error">
-          {errors.root.message}
-        </div>
+        <div className="text-center mb-3 text-error">{errors.root.message}</div>
       )}
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -100,4 +98,4 @@ export default function UserDetailsForm({
       </div>
     </form>
   );
-};
+}

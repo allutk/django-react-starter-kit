@@ -9,16 +9,19 @@ export default function SubmitButton({
   text,
   disabled,
   extraClassName,
-  onClick
+  onClick,
 }: SubmitButtonProps) {
-  const buttonBaseClassName = "font-medium rounded-md outline-none transition duration-300 border-none text-white ";
+  const buttonBaseClassName =
+    "font-medium rounded-md outline-none transition duration-300 border-none text-white ";
 
   return (
     <button
       className={
-        disabled ?
-          buttonBaseClassName + "cursor-not-allowed opacity-60 " + extraClassName :
-          buttonBaseClassName + "cursor-pointer " + extraClassName
+        disabled
+          ? buttonBaseClassName +
+            "cursor-not-allowed opacity-60 " +
+            extraClassName
+          : buttonBaseClassName + "cursor-pointer " + extraClassName
       }
       disabled={disabled}
       onClick={onClick}
@@ -26,4 +29,4 @@ export default function SubmitButton({
       {text}
     </button>
   );
-};
+}

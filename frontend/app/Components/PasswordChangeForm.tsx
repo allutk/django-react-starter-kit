@@ -14,12 +14,12 @@ type PasswordChangeFormProps = {
 const formSchema = z.object({
   currentPassword: z.string(),
   newPassword: z.string(),
-  newPasswordConfirmation: z.string()
+  newPasswordConfirmation: z.string(),
 });
 type FormFields = z.infer<typeof formSchema>;
 
 export default function PasswordChangeForm({
-  extraClassName
+  extraClassName,
 }: PasswordChangeFormProps) {
   const { updateUserPassword } = useAuth();
   const {
@@ -29,9 +29,9 @@ export default function PasswordChangeForm({
     watch,
     reset,
     clearErrors,
-    formState: { errors, isSubmitting }
+    formState: { errors, isSubmitting },
   } = useForm<FormFields>({
-    resolver: zodResolver(formSchema)
+    resolver: zodResolver(formSchema),
   });
 
   const onSubmit: SubmitHandler<FormFields> = async (data) => {
@@ -42,9 +42,10 @@ export default function PasswordChangeForm({
         data.currentPassword,
         data.newPassword,
         data.newPasswordConfirmation,
-        (error: any) => setError("root", {
-          message: error.response.data.detail
-        }),
+        (error: any) =>
+          setError("root", {
+            message: error.response.data.detail,
+          }),
         () => {
           reset();
           clearErrors();
@@ -62,9 +63,7 @@ export default function PasswordChangeForm({
       <Loader isLoading={isSubmitting} />
 
       {errors.root && (
-        <div className="text-center mb-3 text-error">
-          {errors.root.message}
-        </div>
+        <div className="text-center mb-3 text-error">{errors.root.message}</div>
       )}
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -98,7 +97,8 @@ export default function PasswordChangeForm({
       <div className="flex justify-end pt-6">
         <SubmitButton
           text="Save"
-          disabled={isSubmitting ||
+          disabled={
+            isSubmitting ||
             !watch("currentPassword") ||
             !watch("newPassword") ||
             !watch("newPasswordConfirmation")
@@ -108,4 +108,4 @@ export default function PasswordChangeForm({
       </div>
     </form>
   );
-};
+}

@@ -3,7 +3,7 @@ import {
   useContext,
   useEffect,
   useState,
-  type ReactNode
+  type ReactNode,
 } from "react";
 import { useNavigate } from "react-router";
 import { jwtDecode } from "jwt-decode";
@@ -15,8 +15,8 @@ import type { UserDetails } from "~/Models/User";
 import backendApi from "~/Services/BackendApi";
 import type { UserDetailsUpdateRequest } from "~/Models/ApiRequest";
 import type {
-UserDetailsResponse,
-  UserTokensResponse
+  UserDetailsResponse,
+  UserTokensResponse,
 } from "~/Models/ApiResponse";
 
 type AuthContextType = {
@@ -25,30 +25,28 @@ type AuthContextType = {
   userDetails: UserDetails | null;
   isLoggedIn: () => boolean;
   loginUser: (
-    email: string,
-    password: string,
-    onFailCallback: (error: any) => void
+    _email: string,
+    _password: string,
+    _onFailCallback: (_error: any) => void
   ) => Promise<void>;
   registerUser: (
-    email: string,
-    password: string,
-    onFailCallback: (error: any) => void
+    _email: string,
+    _password: string,
+    _onFailCallback: (_error: any) => void
   ) => Promise<void>;
   logoutUser: () => void;
-  patchUserDetails: (
-    params: {
-      onFailCallback: (error: any) => void,
-      email?: string,
-      firstName?: string,
-      lastName?: string
-    }
-  ) => Promise<void>;
+  patchUserDetails: (_params: {
+    onFailCallback: (_error: any) => void;
+    email?: string;
+    firstName?: string;
+    lastName?: string;
+  }) => Promise<void>;
   updateUserPassword: (
-    currentPassword: string,
-    newPassword: string,
-    newPasswordConfirmation: string,
-    onFailCallback: (error: any) => void,
-    onSuccessCallback: () => void
+    _currentPassword: string,
+    _newPassword: string,
+    _newPasswordConfirmation: string,
+    _onFailCallback: (_error: any) => void,
+    _onSuccessCallback: () => void
   ) => Promise<void>;
 };
 
@@ -76,10 +74,10 @@ export default function AuthProvider({ children }: { children: ReactNode }) {
           id: data.id,
           email: data.email,
           firstName: data.first_name,
-          lastName: data.last_name
+          lastName: data.last_name,
         });
       }
-    } catch (error) {
+    } catch (_error: any) {
       logoutUser();
     }
   };
@@ -92,19 +90,19 @@ export default function AuthProvider({ children }: { children: ReactNode }) {
     try {
       const res = await backendApi.post<UserTokensResponse>("/token/", {
         email: email,
-        password: password
+        password: password,
       });
 
       if (res.status === StatusCodes.OK) {
         const accessToken = res.data.access;
         const refreshToken = res.data.refresh;
-    
+
         setAccessToken(accessToken);
         setRefreshToken(refreshToken);
         localStorage.setItem(ACCESS_TOKEN, accessToken);
         localStorage.setItem(REFRESH_TOKEN, refreshToken);
         await getUserDetails();
-  
+
         toast.success("Logged in successfully!", TOAST_OPTIONS);
         navigate("/");
       }
@@ -121,7 +119,7 @@ export default function AuthProvider({ children }: { children: ReactNode }) {
     try {
       const res = await backendApi.post<UserDetailsResponse>("/user/", {
         email: email,
-        password: password
+        password: password,
       });
 
       if (res.status === StatusCodes.CREATED) {
@@ -133,32 +131,38 @@ export default function AuthProvider({ children }: { children: ReactNode }) {
   };
 
   const logoutUser = (): void => {
-    if (localStorage.getItem(ACCESS_TOKEN) ||
-        localStorage.getItem(REFRESH_TOKEN)) {
+    if (
+      localStorage.getItem(ACCESS_TOKEN) ||
+      localStorage.getItem(REFRESH_TOKEN)
+    ) {
       setAccessToken(null);
       setRefreshToken(null);
       setUserDetails(null);
-  
+
       localStorage.removeItem(ACCESS_TOKEN);
       localStorage.removeItem(REFRESH_TOKEN);
-  
+
       toast.success("Signed out successfully!", TOAST_OPTIONS);
       navigate("/");
     }
   };
 
   const patchUserDetails = async (params: {
-    onFailCallback: (error: any) => void,
-    email?: string,
-    firstName?: string,
-    lastName?: string,
-    password?: string
+    onFailCallback: (error: any) => void;
+    email?: string;
+    firstName?: string;
+    lastName?: string;
+    password?: string;
   }): Promise<void> => {
     if (userDetails) {
       try {
         const req = {} as UserDetailsUpdateRequest;
-        params.firstName ? req.first_name = params.firstName : req.first_name = null;
-        params.lastName ? req.last_name = params.lastName : req.last_name = null;
+        params.firstName
+          ? (req.first_name = params.firstName)
+          : (req.first_name = null);
+        params.lastName
+          ? (req.last_name = params.lastName)
+          : (req.last_name = null);
 
         const res = await backendApi.patch<UserDetailsResponse>(
           "/user/" + userDetails.id + "/",
@@ -170,7 +174,7 @@ export default function AuthProvider({ children }: { children: ReactNode }) {
             id: res.data.id,
             email: res.data.email,
             firstName: res.data.first_name,
-            lastName: res.data.last_name
+            lastName: res.data.last_name,
           });
           toast.success("User details updated successfully!", TOAST_OPTIONS);
         }
@@ -191,7 +195,7 @@ export default function AuthProvider({ children }: { children: ReactNode }) {
       const res = await backendApi.put("/password/change/", {
         current_password: currentPassword,
         new_password: newPassword,
-        new_password_confirmation: newPasswordConfirmation
+        new_password_confirmation: newPasswordConfirmation,
       });
 
       if (res.status === StatusCodes.OK) {
@@ -207,7 +211,7 @@ export default function AuthProvider({ children }: { children: ReactNode }) {
     try {
       const refreshToken = localStorage.getItem(REFRESH_TOKEN);
       const res = await backendApi.post<UserTokensResponse>("/token/refresh/", {
-        refresh: refreshToken
+        refresh: refreshToken,
       });
 
       if (res.status === StatusCodes.OK) {
@@ -215,7 +219,7 @@ export default function AuthProvider({ children }: { children: ReactNode }) {
         setAccessToken(accessToken);
         localStorage.setItem(ACCESS_TOKEN, accessToken);
       }
-    } catch (error: any) {
+    } catch (_error: any) {
       logoutUser();
     }
   };
@@ -257,12 +261,12 @@ export default function AuthProvider({ children }: { children: ReactNode }) {
         registerUser,
         logoutUser,
         patchUserDetails,
-        updateUserPassword
+        updateUserPassword,
       }}
     >
       {isReady ? children : null}
     </AuthContext.Provider>
   );
-};
+}
 
 export const useAuth = () => useContext(AuthContext);

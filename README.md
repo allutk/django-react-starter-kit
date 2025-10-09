@@ -77,6 +77,7 @@ django-react-starter-kit/
 ├── docker-compose.yml
 └── .dockerignore
 └── .gitignore
+└── .env
 └── README.md
 ```
 
@@ -149,6 +150,8 @@ django-react-starter-kit/
 - [x] Frontend auth functionality, 2025.10.05
 - [x] Frontend user details update functionality, 2025.10.07
 - [x] Docker setup, 2025.10.09
+- [x] GitHub Actions and linters, 2025.10.09
+- [ ] Test cases
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 

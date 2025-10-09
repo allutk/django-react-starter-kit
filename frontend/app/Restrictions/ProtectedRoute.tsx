@@ -6,4 +6,4 @@ import { useAuth } from "~/Contexts/useAuth";
 export default function ProtectedRoute({ children }: { children: ReactNode }) {
   const { isLoggedIn } = useAuth();
   return isLoggedIn() ? children : <Navigate to="/login" replace />;
-};
+}

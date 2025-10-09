@@ -16,4 +16,4 @@ export default function Body({ children }: { children: ReactNode }) {
       </main>
     </div>
   );
-};
+}

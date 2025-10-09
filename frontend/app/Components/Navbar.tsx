@@ -1,4 +1,5 @@
-import { NavLink } from "react-router"
+import { NavLink } from "react-router";
+
 import { useAuth } from "~/Contexts/useAuth";
 
 export default function Navbar() {
@@ -38,4 +39,4 @@ export default function Navbar() {
       </div>
     </header>
   );
-};
+}

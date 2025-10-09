@@ -5,9 +5,11 @@ from rest_framework.request import Request
 from rest_framework.views import APIView
 
 from .models import User
-from .serializers import (UserPasswordUpdateSerializer,
-                          UserSerializer,
-                          UserUpdateSerializer)
+from .serializers import (
+    UserPasswordUpdateSerializer,
+    UserSerializer,
+    UserUpdateSerializer,
+)
 
 
 class UserListCreateView(generics.ListCreateAPIView):
@@ -45,12 +47,12 @@ class UserPasswordUpdateView(APIView):
 
     def put(self, request: Request):
         serializer = UserPasswordUpdateSerializer(
-            data=request.data,
-            context={ 'request': request }
+            data=request.data, context={'request': request}
         )
         if serializer.is_valid():
             serializer.save()
-            return Response({'detail': 'Password changed successfully'},
-                            status=status.HTTP_200_OK)
-        return Response(serializer.errors,
-                        status=status.HTTP_400_BAD_REQUEST)
+            return Response(
+                {'detail': 'Password changed successfully'},
+                status=status.HTTP_200_OK,
+            )
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

@@ -3,7 +3,6 @@ import { useForm, type SubmitHandler } from "react-hook-form";
 import { useNavigate } from "react-router";
 import z from "zod";
 
-import type { Route } from "./+types/Login";
 import BoxContainer from "~/Components/BoxContainer";
 import Loader from "~/Components/Loader";
 import AnonymousRoute from "~/Restrictions/AnonymousRoute";
@@ -11,17 +10,19 @@ import { useAuth } from "~/Contexts/useAuth";
 import AuthInputField from "~/Components/AuthInputField";
 import SubmitButton from "~/Components/SubmitButton";
 
-export function meta({}: Route.MetaArgs) {
+export function meta() {
   return [
     { title: "Django + React Starter Kit" },
-    { name: "description",
-      content: "Production-ready Django + React Starter Kit" },
+    {
+      name: "description",
+      content: "Production-ready Django + React Starter Kit",
+    },
   ];
 }
 
 const formSchema = z.object({
   email: z.email(),
-  password: z.string()
+  password: z.string(),
 });
 type FormFields = z.infer<typeof formSchema>;
 
@@ -32,9 +33,9 @@ export default function Login() {
     handleSubmit,
     setError,
     watch,
-    formState: { errors, isSubmitting }
+    formState: { errors, isSubmitting },
   } = useForm<FormFields>({
-    resolver: zodResolver(formSchema)
+    resolver: zodResolver(formSchema),
   });
 
   const navigate = useNavigate();
@@ -42,7 +43,7 @@ export default function Login() {
   const onSubmit: SubmitHandler<FormFields> = async (data) => {
     await loginUser(data.email, data.password, (error: any) => {
       setError("root", {
-        message: error.response?.data?.detail || error.message
+        message: error.response?.data?.detail || error.message,
       });
     });
   };
@@ -92,7 +93,8 @@ export default function Login() {
         </form>
 
         <p className="mt-7 mb-2 text-center">
-          Don't have an account? <a
+          Don't have an account?{" "}
+          <a
             className="cursor-pointer text-accent hover:underline"
             onClick={() => navigate("/register")}
           >
@@ -102,4 +104,4 @@ export default function Login() {
       </BoxContainer>
     </AnonymousRoute>
   );
-};
+}

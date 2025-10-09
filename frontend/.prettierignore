@@ -1,0 +1,8 @@
+# Ignore build artifacts and dependencies
+node_modules
+build
+dist
+
+# Ignore React Router generated files
+.react-router
+**/.react-router/**

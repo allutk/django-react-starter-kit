@@ -3,3 +3,5 @@ psycopg2-binary
 djangorestframework
 djangorestframework_simplejwt
 django-cors-headers
+black
+flake8

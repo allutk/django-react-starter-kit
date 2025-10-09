@@ -1,15 +1,16 @@
-import type { Route } from "./+types/Home";
 import { useAuth } from "~/Contexts/useAuth";
 import ProtectedRoute from "~/Restrictions/ProtectedRoute";
 import BoxContainer from "~/Components/BoxContainer";
 import UserDetailsForm from "~/Components/UserDetailsForm";
 import PasswordChangeForm from "~/Components/PasswordChangeForm";
 
-export function meta({}: Route.MetaArgs) {
+export function meta() {
   return [
     { title: "Django + React Starter Kit" },
-    { name: "description",
-      content: "Production-ready Django + React Starter Kit" },
+    {
+      name: "description",
+      content: "Production-ready Django + React Starter Kit",
+    },
   ];
 }
 
