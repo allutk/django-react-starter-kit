@@ -15,7 +15,7 @@ from .serializers import (
 
 @api_view(["GET"])
 @permission_classes([AllowAny])
-def healthcheck(_: Request):
+def healthcheck(_: Request) -> Response:
     return Response({"status": "ok"})
 
 

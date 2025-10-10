@@ -164,7 +164,8 @@ django-react-starter-kit/
 - [x] Frontend user details update functionality, 2025.10.07
 - [x] Docker setup, 2025.10.09
 - [x] GitHub Actions and linters, 2025.10.09
-- [ ] Test cases
+- [x] Backend test cases, 2025.10.10
+- [ ] Frontend test cases
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
