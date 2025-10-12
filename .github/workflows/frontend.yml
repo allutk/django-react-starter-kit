@@ -29,3 +29,15 @@ jobs:
         run: |
           cd frontend
           npx prettier --check .
+
+      - name: Run Jest tests
+        run: |
+          cd frontend
+          npm run test:coverage
+
+      - name: Upload coverage report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: jest-coverage
+          path: frontend/coverage

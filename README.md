@@ -15,6 +15,7 @@
 <details>
     <summary>Table of Contents</summary>
         <ol>
+            <li><a href="#ci">CI</a></li>
             <li><a href="#tech-stack">Tech Stack</a></li>
             <li><a href="#features">Features</a></li>
             <li><a href="#project-structure">Environment Variables</a></li>
@@ -26,6 +27,14 @@
             <li><a href="#roadmap">Roadmap</a></li>
         </ol>
 </details>
+
+
+## CI
+
+[![Backend CI](https://github.com/allutk/django-react-starter-kit/actions/workflows/backend.yml/badge.svg)](https://github.com/allutk/django-react-starter-kit/actions/workflows/backend.yml)<br />
+[![Frontend CI](https://github.com/allutk/django-react-starter-kit/actions/workflows/frontend.yml/badge.svg)](https://github.com/allutk/django-react-starter-kit/actions/workflows/frontend.yml/badge.svg)
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
 ## Tech Stack
@@ -165,7 +174,7 @@ django-react-starter-kit/
 - [x] Docker setup, 2025.10.09
 - [x] GitHub Actions and linters, 2025.10.09
 - [x] Backend test cases, 2025.10.10
-- [ ] Frontend test cases
+- [x] Frontend test cases, 2025.10.12
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
