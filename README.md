@@ -32,7 +32,7 @@
 ## CI
 
 [![Backend CI](https://github.com/allutk/django-react-starter-kit/actions/workflows/backend.yml/badge.svg)](https://github.com/allutk/django-react-starter-kit/actions/workflows/backend.yml)<br />
-[![Frontend CI](https://github.com/allutk/django-react-starter-kit/actions/workflows/frontend.yml/badge.svg)](https://github.com/allutk/django-react-starter-kit/actions/workflows/frontend.yml/badge.svg)
+[![Frontend CI](https://github.com/allutk/django-react-starter-kit/actions/workflows/frontend.yml/badge.svg)](https://github.com/allutk/django-react-starter-kit/actions/workflows/frontend.yml)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
